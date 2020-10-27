@@ -1,0 +1,12 @@
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\bin\Debug\HttpServerLib.dll
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\bin\Debug\HttpServerLib.pdb
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.csprojAssemblyReference.cache
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.csproj.CoreCompileInputs.cache
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.dll
+D:\UnityRes\Http\HttpServer-master\HttpServer-master\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.pdb
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\bin\Debug\HttpServerLib.dll
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\bin\Debug\HttpServerLib.pdb
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.csprojAssemblyReference.cache
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.csproj.CoreCompileInputs.cache
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.dll
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServerLib\obj\Debug\HttpServerLib.pdb
