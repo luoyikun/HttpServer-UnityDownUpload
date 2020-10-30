@@ -54,15 +54,17 @@ namespace SuperTreeView
             mIcon.sprite = ResManager.Instance.GetSpriteByName(iconSpriteName);
             mLabelText.text = labelTxt;
             mData = data;
-
+            TreeViewItem item = GetComponent<TreeViewItem>();
+            item.uID = data;
         }
 
         void OnItemClicked()
         {
             TreeViewItem item = GetComponent<TreeViewItem>();
             item.RaiseCustomEvent(CustomEvent.ItemClicked, null);
-            Debug.Log("TreeViewItem Clicked " + Data);
-            DemoSceneScript.GetSelfID("",item);
+            //Debug.Log("TreeViewItem Clicked " + Data);
+            //DemoSceneScript.GetSelfID("",item);
+            Debug.Log(GetComponent<TreeViewItem>().uID);
         }
 
         public void SetExpandBtnVisible(bool visible)

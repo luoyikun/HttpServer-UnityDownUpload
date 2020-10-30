@@ -197,9 +197,9 @@ namespace SuperTreeView
                 }
                 
 
-                TreeViewItem childItem = item.ParentTreeList.InsertItem(item.ParentTreeList.ItemCount, "ItemPrefab1");
+                TreeViewItem childItem = item.ParentTreeList.AddItemAtLast("ItemPrefab1");
 
-                childItem.GetComponent<ItemScript1>().SetItemInfo("Movie", "Movie" + mNewItemCount);
+                childItem.GetComponent<ItemScript1>().SetItemInfo("Movie",  childItem.uID);
             }
         }
 
@@ -281,6 +281,30 @@ namespace SuperTreeView
                 }
                 TreeViewItem childItem = item.ChildTree.AppendItem("ItemPrefab1");
                 childItem.GetComponent<ItemScript1>().SetItemInfo("Movie", "Movie" + mNewItemCount);
+                
+
+            }
+
+        }
+
+        public void OnAddChildAtLast()
+        {
+            mNewItemCount++;
+            if (mTreeView.IsEmpty)
+            {
+                TreeViewItem childItem = mTreeView.AppendItem("ItemPrefab1");
+                childItem.GetComponent<ItemScript1>().SetItemInfo("Movie", "Movie" + mNewItemCount);
+            }
+            else
+            {
+                TreeViewItem item = CurSelectedItem;
+                if (item == null)
+                {
+                    Debug.Log("Please Select a Item First");
+                    return;
+                }
+                TreeViewItem childItem = item.ChildTree.AddItemAtLast("ItemPrefab1");
+                childItem.GetComponent<ItemScript1>().SetItemInfo("Movie", childItem.uID);
             }
 
         }

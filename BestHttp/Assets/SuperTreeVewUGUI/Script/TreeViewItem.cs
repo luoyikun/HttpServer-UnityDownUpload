@@ -409,7 +409,7 @@ namespace SuperTreeView
             set { mItemPrefabName = value; }
         }
 
-        public string ID
+        public string uID
         {
             set;get;
         }

@@ -202,6 +202,46 @@ namespace SuperTreeView
             return tViewItem;
         }
 
+        // This method is used to insert a new item to a TreeList at itemIndex Pos.
+        //All the child items of a TreeList are indexed from top to bottom starting at 0. 
+        //That is to say the top most item of a TreeList is indexed 0 and the right below item is indexed 1.
+        public TreeViewItem AddItemAtLast(string prefabName = "", System.Object userData = null)
+        {
+            int itemIndex = mTreeItemList.Count;
+            if (itemIndex < 0 || itemIndex > mTreeItemList.Count)
+            {
+                return null;
+            }
+            if (string.IsNullOrEmpty(prefabName))
+            {
+                prefabName = DefaultItemPrefabName;
+            }
+            TreeViewItem tViewItem = mRootTreeView.NewTreeItem(prefabName);
+            InitTreeViewItem(tViewItem);
+            tViewItem.Init();
+            tViewItem.UserData = userData;
+            mTreeItemList.Insert(itemIndex, tViewItem);
+            ResetAllItemIndex();
+            tViewItem.OnActived();
+            UpdateAllItemSiblingIndex();
+            mNeedReposition = true;
+            if (IsRootTree)
+            {
+                RootTreeView.NeedRepositionView = true;
+            }
+            if (RootTreeView.OnTreeListAddOneItem != null)
+            {
+                RootTreeView.OnTreeListAddOneItem(this);
+            }
+
+            if (tViewItem.ParentTreeItem != null)
+            {
+                tViewItem.uID += tViewItem.ParentTreeItem.uID + "_";
+            }
+            tViewItem.uID += itemIndex;
+            return tViewItem;
+        }
+
         public void UpdateAllItemSiblingIndex()
         {
             int count = mTreeItemList.Count;
