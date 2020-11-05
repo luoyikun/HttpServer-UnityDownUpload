@@ -55,7 +55,10 @@ namespace SuperTreeView
             mLabelText.text = labelTxt;
             mData = data;
             TreeViewItem item = GetComponent<TreeViewItem>();
-            item.uID = data;
+            if (data != "")
+            {
+                item.uID = data;
+            }
         }
 
         void OnItemClicked()
