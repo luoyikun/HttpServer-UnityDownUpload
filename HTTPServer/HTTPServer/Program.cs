@@ -14,6 +14,9 @@ namespace HTTPServerLib
         static int m_portUpload = 3477;
         static void Main(string[] args)
         {
+            MySqlMgr m_mysql = new MySqlMgr("192.168.8.163", "3306", "root", "123456", "luoyangpt919");
+            
+
             RecvMgr recv = new RecvMgr();
             recv.StartServer(GetIp(), m_portUpload);
 

@@ -18,3 +18,4 @@ D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownU
 D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServer\obj\Debug\HttpServer.csproj.CopyComplete
 D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServer\obj\Debug\HttpServer.exe
 D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServer\obj\Debug\HttpServer.pdb
+D:\UnityProjects\GithubProjects\HttpServer-UnityDownUpload\HttpServer-UnityDownUpload\HTTPServer\HTTPServer\bin\Debug\MySql.Data.dll

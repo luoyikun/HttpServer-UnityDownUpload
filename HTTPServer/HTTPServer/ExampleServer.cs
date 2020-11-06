@@ -28,7 +28,7 @@ namespace HttpServer
 
             //设置返回信息
             string content = string.Format("这是通过Post方式返回的数据:{0}", data);
-
+            Console.WriteLine(content);
             //构造响应报文
             response.SetContent(content);
             response.Content_Encoding = "utf-8";

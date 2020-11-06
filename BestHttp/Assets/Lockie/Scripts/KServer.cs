@@ -10,6 +10,8 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using BestHTTP;
+using System.Web;
 
 public class KServer : MonoBehaviour {
     public Text m_text;
@@ -38,6 +40,54 @@ public class KServer : MonoBehaviour {
 
     }
 
+    void HttpPost()
+    {
+        Encoding myEncoding = Encoding.GetEncoding("gb2312");
+
+        string param = HttpUtility.UrlEncode("参数一=值为二", myEncoding);
+
+        byte[] postBytes = Encoding.ASCII.GetBytes(param);
+
+        HTTPRequest request = new HTTPRequest(new System.Uri("http://" + PublicFunc.GetIp() + ":" + m_port + "/"), HTTPMethods.Post, OnRequestFinished);
+        request.AddBinaryData(param, postBytes);
+        request.Send();
+    }
+
+    private string PostWebRequest(string postUrl, string paramData)
+    {
+        // 把字符串转换为bype数组
+        byte[] bytes = Encoding.GetEncoding("gb2312").GetBytes(paramData);
+
+        HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(new Uri(postUrl));
+        webReq.Method = "POST";
+        webReq.ContentType = "application/x-www-form-urlencoded;charset=gb2312";
+        webReq.ContentLength = bytes.Length;
+        using (Stream newStream = webReq.GetRequestStream())
+        {
+            newStream.Write(bytes, 0, bytes.Length);
+        }
+        using (WebResponse res = webReq.GetResponse())
+        {
+            //在这里对接收到的页面内容进行处理
+            Stream responseStream = res.GetResponseStream();
+            StreamReader streamReader = new StreamReader(responseStream, Encoding.GetEncoding("UTF-8"));
+            string str = streamReader.ReadToEnd();
+            streamReader.Close();
+            responseStream.Close();
+            //返回：服务器响应流 
+            Debug.Log(str);
+            return str;
+        }
+    }
+
+    void OnRequestFinished(HTTPRequest request, HTTPResponse response)
+    {
+
+        Debug.Log("Request Finished! Text received: " + response.DataAsText);
+
+    }
+
+
     private void OnGUI()
     {
         if (GUI.Button(new Rect(0, 0, 80, 50), "Get"))
@@ -45,7 +95,9 @@ public class KServer : MonoBehaviour {
             //StartCoroutine(Post());
             //StartCoroutine(SendFile());
             //TraditionPost();
-
+            //TraPost();
+            //HttpPost();
+            PostWebRequest("http://" + PublicFunc.GetIp() + ":" + m_port + "/", "阿斯蒂芬和的");
         }
 
         if (GUI.Button(new Rect(0, 50, 80, 50), "Unload"))
@@ -83,6 +135,22 @@ public class KServer : MonoBehaviour {
         }
     }
 
+    void TraPost()
+    { 
+        var request = (HttpWebRequest)WebRequest.Create("http://" + PublicFunc.GetIp() + ":" + m_port + "/");
+        request.Method = "POST";
+        var requestStream = request.GetRequestStream();
+        var data = Encoding.UTF8.GetBytes("a=10&b=15");
+        requestStream.Write(data, 0, data.Length);
+        var response = request.GetResponse();
+
+        using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+        {
+            var content = reader.ReadToEnd();
+            Debug.Log(content);
+        }
+    }
+
     void TraditionPost()
     {
         Dictionary<string, string> dic = new Dictionary<string, string>();
@@ -94,8 +162,8 @@ public class KServer : MonoBehaviour {
     IEnumerator Post()
     {
         WWWForm form = new WWWForm();
-        form.AddField("num1", 12);
-        form.AddField("num2", 23);
+        form.AddField("啥地方啥地方", "啥地方啥地方");
+        form.AddField("num2", "sdf 阿斯顿发生单号");
         WWW www = new WWW("http://" + PublicFunc.GetIp() + ":" + m_port + "/", form);
         Debug.Log(www.url);
         yield return www;
