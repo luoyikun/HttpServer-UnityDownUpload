@@ -343,6 +343,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>D:/UnityProjects/GithubProjects/HttpServer-UnityDownUpload/HttpServer-UnityDownUpload/BestHttp/Assets/JsonDotNet/Assemblies/Standalone/Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web">
+      <HintPath>D:/UnityProjects/GithubProjects/HttpServer-UnityDownUpload/HttpServer-UnityDownUpload/BestHttp/Assets/Plugins/System.Web.dll</HintPath>
+    </Reference>
     <Reference Include="LitJson">
       <HintPath>D:/UnityProjects/GithubProjects/HttpServer-UnityDownUpload/HttpServer-UnityDownUpload/BestHttp/Assets/Plugins/x64/LitJson.dll</HintPath>
     </Reference>
@@ -363,9 +366,6 @@
     </Reference>
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>D:/UnityProjects/GithubProjects/HttpServer-UnityDownUpload/HttpServer-UnityDownUpload/BestHttp/Library/PackageCache/com.unity.purchasing@2.0.3/Editor/UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web">
-      <HintPath>D:/UnityProjects/GithubProjects/HttpServer-UnityDownUpload/HttpServer-UnityDownUpload/BestHttp/Assets/Plugins/System.Web.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity2018.4/Editor/Data/MonoBleedingEdge/lib/mono/2.0-api/mscorlib.dll</HintPath>

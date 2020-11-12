@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HTTPServerLib;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace HttpServer
 {
@@ -24,7 +25,7 @@ namespace HttpServer
         public override void OnPost(HttpRequest request, HttpResponse response)
         {
             //获取客户端传递的参数
-            string data = request.Params == null ? "" : string.Join(";", request.Params.Select(x => x.Key + "=" + x.Value).ToArray());
+            string data = request.Params == null ? "" : string.Join(";", request.Params.Select(x => UrlDecode(x.Key) + "=" + UrlDecode(x.Value)).ToArray());
 
             //设置返回信息
             string content = string.Format("这是通过Post方式返回的数据:{0}", data);
@@ -38,6 +39,35 @@ namespace HttpServer
 
             //发送响应
             response.Send();
+        }
+
+        public static string UrlEncode(string str)
+        {
+            //处理加号
+            //string newStr=  str.Replace("+", "%2B");
+            //return newStr;
+
+            //处理全部
+            StringBuilder sb = new StringBuilder();
+            byte[] byStr = System.Text.Encoding.UTF8.GetBytes(str);
+            for (int i = 0; i < byStr.Length; i++)
+            {
+                sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+            }
+            return (sb.ToString());
+        }
+
+        public static string UrlDecode(string str)
+        {
+            string[] chars = Regex.Split(str, "%25", RegexOptions.IgnoreCase);
+            byte[] b = new byte[chars.Length];
+
+            for (int i = 0; i < chars.Length; i++)
+            {
+                b[i] = (byte)(int.Parse(chars[i]));
+            }
+            //按照指定编码将字节数组变为字符串
+            return System.Text.Encoding.UTF8.GetString(b);
         }
 
         public override void OnGet(HttpRequest request, HttpResponse response)

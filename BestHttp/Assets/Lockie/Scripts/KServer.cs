@@ -92,12 +92,12 @@ public class KServer : MonoBehaviour {
     {
         if (GUI.Button(new Rect(0, 0, 80, 50), "Get"))
         {
-            //StartCoroutine(Post());
+            StartCoroutine(Post());
             //StartCoroutine(SendFile());
             //TraditionPost();
             //TraPost();
             //HttpPost();
-            PostWebRequest("http://" + PublicFunc.GetIp() + ":" + m_port + "/", "阿斯蒂芬和的");
+            //PostWebRequest("http://" + PublicFunc.GetIp() + ":" + m_port + "/", "阿斯蒂芬和的");
         }
 
         if (GUI.Button(new Rect(0, 50, 80, 50), "Unload"))
@@ -162,12 +162,46 @@ public class KServer : MonoBehaviour {
     IEnumerator Post()
     {
         WWWForm form = new WWWForm();
-        form.AddField("啥地方啥地方", "啥地方啥地方");
-        form.AddField("num2", "sdf 阿斯顿发生单号");
+        form.AddField(UrlEncode("123 qwe"), UrlEncode("123 sdfsdf"));
+        form.AddField(UrlEncode("num2"), UrlEncode("sdf 阿斯顿发生单号"));
         WWW www = new WWW("http://" + PublicFunc.GetIp() + ":" + m_port + "/", form);
         Debug.Log(www.url);
         yield return www;
         Debug.Log(www.text);
+    }
+
+    public static string UrlEncode(string str)
+    {
+        string sb = "";
+        byte[] byStr = System.Text.Encoding.UTF8.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            if (i == 0)
+            {
+                sb += byStr[i].ToString();
+            }
+            else
+            {
+                sb += "%" + byStr[i].ToString();
+            }
+        }
+        return sb;
+    }
+
+    public static string UrlDecode(string str)
+    {
+        //处理加号
+        //string newStr=  str.Replace("+", "%2B");
+        //return newStr;
+
+        //处理全部
+        StringBuilder sb = new StringBuilder();
+        byte[] byStr = System.Text.Encoding.UTF8.GetBytes(str);
+        for (int i = 0; i < byStr.Length; i++)
+        {
+            sb.Append(@"%" + Convert.ToString(byStr[i], 16));
+        }
+        return (sb.ToString());
     }
 
     IEnumerator SendGet(string _url)
