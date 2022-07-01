@@ -12,17 +12,21 @@ namespace HTTPServerLib
     {
         static int m_portDownload = 10089;
         static int m_portUpload = 3477;
+
+        static bool m_isUseUpload = false;
         static void Main(string[] args)
         {
-            MySqlMgr m_mysql = new MySqlMgr("192.168.8.163", "3306", "root", "123456", "luoyangpt919");
-            
+            if (m_isUseUpload == true)
+            {
+                MySqlMgr m_mysql = new MySqlMgr("192.168.8.163", "3306", "root", "123456", "luoyangpt919");
 
-            RecvMgr recv = new RecvMgr();
-            recv.StartServer(GetIp(), m_portUpload);
+                RecvMgr recv = new RecvMgr();
+                recv.StartServer(GetIp(), m_portUpload);
+            }
 
             ExampleServer server = new ExampleServer(GetIp(), m_portDownload);
-            server.SetRoot(@"D:\KServer");
             server.Logger = new ConsoleLogger();
+            server.SetRoot(@"D:\KServer");
             server.Start();
         }
 
